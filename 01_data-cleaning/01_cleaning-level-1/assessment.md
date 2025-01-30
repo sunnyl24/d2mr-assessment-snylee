@@ -21,7 +21,7 @@ Mini-project title:Data Cleaning
 
 Submission date:
 
-Project GitHub subdirectory URL: 
+Project GitHub subdirectory URL: https://github.com/sunnyl24/d2mr-assessment-snylee/tree/06d8813aa0176f2735f4137b31818859326aa406/01_data-cleaning/01_cleaning-level-1
 
 URL or instructions to access additional materials, if needed:
 

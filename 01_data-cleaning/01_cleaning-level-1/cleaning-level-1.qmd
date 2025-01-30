@@ -97,11 +97,11 @@ QUESTIONS:
 
 1. What are the differences between the messy dataset and the original mtcars dataset?
 
-<!-- answer below -->
+<Messy column names. The values are all up to different decimal point/same significant figure. >
 
 2. What are the main issues you need to address in cleaning?
 
-<!-- answer below -->
+<Names of column and make significant figure value for all numbers the same>
 
 
 
@@ -114,7 +114,10 @@ QUESTIONS:
 #| label: make-cleaning-dataset
 
 # Create a dataset to work with during the cleaning process called "clean.mtcars"
+library(tidyverse)
+set.seed(1234)
 
+clean.mtcars <- messy.mtcars
 
 ```
 
@@ -127,8 +130,10 @@ QUESTIONS:
 #| label: rename-columns
 
 # Rename columns to match the original mtcars dataset
+colnames(messy.mtcars)
+colnames(mtcars)
 
-
+clean.mtcars <-
 ```
 
 ```{r}
