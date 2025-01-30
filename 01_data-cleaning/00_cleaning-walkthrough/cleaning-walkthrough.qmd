@@ -178,7 +178,7 @@ colnames(messy.iris)
 #| label: rename-columns
 
 # Rename columns to match the original iris dataset with rename()
-clean.iris <- messy.iris %>%
+clean.iris <- messy.iris %>% # %>% is a pipe function
     # The format is rename(new_name = old_name)
   rename(Sepal.Length = SepalLength, Sepal.Width = SepalWidth, Petal.Length = PetalLength, Petal.Width = PetalWidth, Species = FlowerSpecies)
 
