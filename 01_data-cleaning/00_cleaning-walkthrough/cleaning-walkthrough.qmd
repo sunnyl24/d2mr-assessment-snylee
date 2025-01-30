@@ -49,13 +49,14 @@ messy.iris <- read_csv(
   "messy-iris.csv", ## <-- THIS IS THE ONLY THING IN THIS CHUNK YOU CAN CHANGE IF NECESSARY
   # you may need to change the file path if your working directory has changed
   ########################################
-  trim_ws = FALSE, name_repair = "minimal", col_types = cols(.default = col_character()))
+  trim_ws = FALSE, name_repair = "minimal", col_types = cols(.default = col_character())) 
+#trim white space #don't repair column names, changes are minimal #column types are default, this prevents R from guessing columns 
 
 # Inspect the data using head(), str(), and glimpse()
 # Notice the differences in the information you get with each
-head(messy.iris)
-str(messy.iris)
-glimpse(messy.iris)
+head(messy.iris) #checks first six rows of the data 
+str(messy.iris) #shows the structure of the data 
+glimpse(messy.iris) #from the dplyr package, and provides a more readable summary than str
 
 
 ```
