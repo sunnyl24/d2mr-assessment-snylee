@@ -132,8 +132,19 @@ clean.mtcars <- messy.mtcars
 # Rename columns to match the original mtcars dataset
 colnames(messy.mtcars)
 colnames(mtcars)
+colnames(clean.mtcars)
+head(clean.mtcars)
 
-clean.mtcars <-
+library(tidyverse)
+
+clean.mtcars <- messy.mtcars %>%
+  rename(mpg = "mpg (Miles/Gallon)", cyl = cylinders, disp = dsip, hp = horsepower, drat = drat, wt = "wt + runif(n(), 2e-05, 2e-04)", wts = wt,qsec = qsec, vs = vs, am = am, gear = gearbox, carb = carburetors)
+library(dplyr)
+clean.mtcars <- clean.mtcars %>% 
+  select(-wts, -hp_per_cyl)
+
+trimws(colnames(clean.mtcars),"l")
+
 ```
 
 ```{r}
