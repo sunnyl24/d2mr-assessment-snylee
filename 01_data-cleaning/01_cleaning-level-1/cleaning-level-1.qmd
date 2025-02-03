@@ -153,6 +153,192 @@ trimws(colnames(clean.mtcars),"l")
 
 # Reorder columns to match the original mtcars dataset
 
+clean.mtcars <- clean.mtcars %>%
+  relocate(mpg, cyl, disp, hp, drat, wt, qsec, vs, am, gear, carb)
+```
+
+```{r}
+
+#| label: correct-data-types
+
+glimpse(mtcars)
+glimpse(clean.mtcars)
+
+numeric_cols <- c("mpg", "cyl", "disp", "hp", "drat", "wt", "qsec", "vs", "am", "gear", "carb")
+clean.mtcars[numeric_cols] <- lapply(clean.mtcars[numeric_cols], as.numeric)
+  
+str(clean.mtcars)
+# Correct variable data types
+
+```
+
+## Checkpoint 1
+
+```{r}
+
+#| label: checkpoint-1
+
+# Inspect the current state of the dataset
+
+# Use all.equal() to check if clean.mtcars matches goal.mtcars
+all.equal(clean.mtcars, mtcars)
+
+```
+
+Questions:
+
+3. The current state of the dataset does not yet match the `goal.mtcars` dataset. Explain the issues that `all.equal()` flags.  Are there groups of issues that can be addressed together?
+
+<!-- answer below -->
+There are NA values in some of the columns that I need to get rid of. 
+Reduce down to consistent decimal points. 
+Mtcars is a data.frame and clean.mtcars is a tibble
+Mtcars rowname is character while clean.mtcars is a numeric
+
+3. Install (if necessary) and load the `daff` package. In the code chunk below, use the `diff_data()` function to identify the differences between `clean.mtcars` and `goal.mtcars`. 
+
+```{r}
+#| label: diff-data
+
+# Install and/or load the daff package if needed
+# install.package("daff")
+# library(daff)
+
+install.packages("daff")
+library(daff)
+
+# Use render_diff() and diff_data() to identify differences between clean.mtcars and goal.mtcars
+
+render_diff(clean.mtcars,mtcars)
+diff_data(mtcars, clean.mtcars)
+
+class(mtcars)
+class(clean.mtcars)
+
+clean.mtcars <- as.data.frame(clean.mtcars)
+
+class(clean.mtcars)
+
+```
+
+How is this method of identifying data discrepancies different from `all.equal()`? Which do you find more helpful at this point?
+
+I find the diff_data more helpful at this point because it does direct comparison between two elements in my dataframe. 
+
+## Clean data values
+
+Identifying specific value problems and cleaning them might take a little creativity at times! Use the troubleshooting/debugging workflows we've discussed to get as far as you can.
+
+```{r}
+
+#| label: remove-unwanted-spaces
+
+# Remove unwanted whitespace in any columns required
+
+class(clean.mtcars$mpg)
+class(clean.mtcars$cyl)
+class(clean.mtcars$disp)
+class(clean.mtcars$hp)
+class(clean.mtcars$drat)
+class(clean.mtcars$wt)
+class(clean.mtcars$qsec)
+class(clean.mtcars$vs)
+class(clean.mtcars$am)
+
+#All numeric, so we can't remove whitespace
+```
+
+```{r}
+
+#| label: impute-missing-values
+
+head(clean.mtcars)
+
+any(is.na(clean.mtcars$mpg))
+any(is.na(clean.mtcars$cyl))
+any(is.na(clean.mtcars$hp))
+
+clean.mtcars[is.na(clean.mtcars$cyl), ]
+clean.mtcars[is.na(clean.mtcars$hp), ]
+
+mtcars[9, c("cyl", "hp")]
+mtcars[15, c("cyl", "hp")]
+mtcars[18, c("cyl", "hp")]
+mtcars[27, c("cyl", "hp")]
+mtcars[30, c("cyl", "hp")]
+
+clean.mtcars[9, "hp"] <- 95
+clean.mtcars[18, "hp"] <- 66
+clean.mtcars[27, "hp"] <- 91
+clean.mtcars[15, "cyl"] <- 8
+clean.mtcars[30, "cyl"] <- 6
+
+any(is.na(clean.mtcars$cyl))
+any(is.na(clean.mtcars$hp))
+
+# Impute missing values for cyl and hp
+
+```
+
+```{r}
+
+#| label: round-numeric-values
+
+# Round numeric values
+
+diff_data(clean.mtcars, mtcars)
+
+clean.mtcars <- clean.mtcars %>%
+  mutate(
+        disp = round(disp, 0),
+        drat = round(drat, 3),
+        wt = round(wt, 4),
+        qsec = round(qsec, 4)
+    )
+
+head(clean.mtcars)
+```
+
+```{r}
+
+#| label: fix-typos
+
+# Fix typos in model names
+## Hint: This can be completed with a 6-line mutate() statement
+
+
+
+```
+
+```{r}
+
+#| label: remove-extra-column
+
+# Remove the extra column
+
+
+```
+
+
+## Checkpoint 2
+
+```{r}
+#| label: checkpoint-2
+
+# Inspect the dataset and compare to goal.mtcars
+
+# all.equal()
+all.equal(mtcars, clean.mtcars)
+
+# daff
+diff_data(mtcars, clean.mtcars)```
+
+```{r}
+
+#| label: reorder-columns
+
+# Reorder columns to match the original mtcars dataset
+
 
 ```
 
