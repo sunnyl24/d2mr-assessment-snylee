@@ -14,7 +14,7 @@ Before submitting your research project draft for grading, confirm:
 
 To complete this assessment:
 
-1. Complete the basic information section in full. 
+1. Complete the basic information section and AI statement. 
 2. Confirm all links are correct and accessible
 3. Check off all objectives you are attempting to demonstrate
     1. To earn 30 points you must demonstrate each objective. However, you do not need to attempt all objectives with each draft if your goal is to build the project over time.
@@ -42,9 +42,47 @@ Filename of manuscript .qmd:
 
 Filename of knitted .pdf:
 
-## Basic requirements
 
-Basic requirements for the dataset are as follows:
+## AI Statement
+
+Describe whether and how you used AI/LLMs when completing this project: 
+
+Optionally (for engagement points) reflect on your use of AI:
+
+
+
+
+
+## Overall requirements
+
+Overall requirements for the research project are as follows:
+
+1. The project must be a research project. It must provide background on a research topic, ask at least one research question, use data to attempt to answer that question, report the results of the data analysis, and interpret the results in the context of the research question.
+2. The project must be contained in a github repository that follows git best practices and includes all necessary files to run the project from start to finish, including:
+    1. The .qmd file for the manuscript
+    2. All data files used in the project
+    3. All scripts used in the project
+    4. A README.md file & .gitignore file
+3. The project must be reproducible -- a reader should be able to clone the repo and run the .qmd from start to finish without error. The .qmd file should include:
+    1. A YAML header with all fields necessary for an APA manuscript
+    2. Setup source chunks that load libraries, read in data, set chunk options, set seed, etc.
+    3. Minimally, an IMRD structure (Introduction, Methods, Results, Discussion), though it may be more complex
+    4. Integration of markdown and code chunks throughout, following best practices for using code chunks
+    5. Figures and tables rendered in code chunks
+    6. Inline R code & references to render data-dependent text
+    7. At least 1 descriptive analysis and 1 hypothesis test, either in code chunks or sourced scripts
+    8. Frequent and informative code comments throughout
+4. The .qmd file should knit/render to an APA7 formatted manuscript with one click and no errors. The knitted manuscript should include:
+    1. A title page with title, author, and institutional affiliation
+    2. An abstract (this may be minimal, but should exist)
+    3. Narrative text comprising a complete research report
+    4. APA7 references, both in-text citations and a References page
+    5. Publication-ready figures (2+) and tables (1+)
+    6. Results of all analyses presented in-text (and where appropriate, in tables), with no raw R output; where possible, all text should be data-dependent and rendered with inline R code
+    7. Quarto generated references to all figures and tables
+    8. Statistical analyses and figures interpreted in narrative text
+5. The .qmd should render a .pdf identical to the .pdf you submit for grading
+
 
 ## Assessment
 
@@ -78,7 +116,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 3.  integrate a GitHub repo with an R studio project, including .gitignore file
 
     1.  All scripts run and all notebooks render if the repo is cloned to another location
-    2.  .gitingore comprehensively excludes unnecessary, private, and very large files and is be commeted appropriately
+    2.  .gitingore comprehensively excludes unnecessary, private, and very large files and are commented appropriately
 
         -   [ ] Objective attempt
         -   [ ] Objective met
@@ -139,6 +177,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
     1. Reads in data from at least one source in code chunk or sourced script
     2. Writes out intermediate and/or final datasets in code chunks or sourced scripts
+    3. Uses only relative paths that run without error when repo is cloned
 
         -   [ ] Objective attempt
         -   [ ] Objective met
@@ -167,6 +206,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
     1. Uses ate least 2 unique `forcats` functions or one function in 2 unique contexts (with different purposes)
     2. Uses `forcats` functions in a data transformation pipeline
+    - NOTE: Though they are base R functions, `factor()` and `levels()` can be used to meet this objective as long as they are used in a way that demonstrates the same skills as `forcats` functions, which should involve including optional arguments
 
         -   [ ] Objective attempt
         -   [ ] Objective met
@@ -193,8 +233,11 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
         
 15. Use facets to create parallel plots
 
-    1. Uses facets in at least 2 ways (e.g., using both `facet_wrap()` and `facet_grid()`), modifying the number of rows and columns, using free vs fixed scales, etc.)
+    1. EITHER:
+      1. Uses both `facet_wrap()` and `facet_grid()` in two different plots *or*
+      2. Uses facets with at least one plot using at least two optional arguments (e.g., modifying the number of rows and columns, using free vs fixed scales, etc.)
     2. Combines facets with other dynamic grouping aesthetics
+      1. If data only includes 1 sensible grouping variable, it may be used for both the faceting and groupin aes.  
 
         -   [ ] Objective attempt
         -   [ ] Objective met
@@ -204,7 +247,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 
     1. Plots have informative titles, axis labels, and legends
     2. Fonts are stylized professionally and legibly (e.g., adjusted size/angle/justification)
-    3. Variables display in plain English (e.g., "Age (years)" not "child_age_yrs"
+    3. Variables and labels display in plain English (e.g., "Age (years)" not "child_age_yrs"
     4. Uses at least 1 static aesthetic (e.g., color, shape, size) that improves visual clarity without mapping to data
 
         -   [ ] Objective attempt
@@ -218,6 +261,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     1. Calculates summary/descriptive statistics for at least 1 numeric variable (e.g., mean, standard deviation) 
     2. Calculates summary/descriptive statistics for at least 1 non-numeric variable (e.g., frequencies, proportions)
     3. Presents results in narrative text, table, or plot
+    - NOTE: This objective may be met with only numeric or non-numeric summaries if they are sufficiently complex (at Dr. Dowling's discretion)
 
         -   [ ] Objective attempt
         -   [ ] Objective met
@@ -228,6 +272,7 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     1. Performs at least 1 hypothesis test for numeric data (e.g., t-tests, linear regression)
     2. Performs at least 1 hypothesis test for factor data (e.g., chi-square, ANOVA)
     3. Presents results in narrative text, table, or plot
+    - NOTE: This objective may be met with only numeric or factor data analyses if they are sufficiently complex (at Dr. Dowling's discretion)
 
         -   [ ] Objective attempt
         -   [ ] Objective met
@@ -295,16 +340,17 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
 24. Render publication-quality tables, figures, and images from code chunks
 
     1. Produces at least 1 table or image with a caption
-    2. Produces at least 1 figure/plot with a markdown caption
+    2. Produces at least 1 figure/plot with a markdown caption (title) and note
     3. Captions are informative, complete, and render correctly
     4. All tables and figures are referenced in the narrative text (e.g., Figure 1)
     5. References render without error and link to the correct table/figure in pdf/html output
+    - NOTE: Ideally your table(s) should be produced in APA7 style, but this is not a strict requirement. At a minimum, they should render as formatted tables (not raw output), have readable and correctly formatted text (e.g., column headers should be capitalized and in plain english, not literal variable names), and the table must be dynamically referenced in the text.
 
         -   [ ] Objective attempt
         -   [ ] Objective met
         -   Grader comments:
 
-25. Execute descriptive analyses and/or hypothesis testing in code chunks
+25. Execute descriptive and inferential analyses in code chunks
 
     1. At least 1 code chunk executes a descriptive analysis (e.g., `summary()`, `table()`)
     2. At least 1 code chunk executes a hypothesis test (e.g., `t.test()`, `chisq.test()`)
@@ -361,10 +407,42 @@ Refer to the website for general tips on meeting these objectives and an FAQ.
     1. Produces a PDF output that is formatted in APA7 style
     2. PDF includes all necessary elements (e.g., title page, abstract, body, references)
     3. PDF renders without error and includes all text, tables, and figures
-    4. No additional steps are needed (e.g., finding data, determining necessary packages to install and load, running unsourced scripts)
+    4. No additional steps are needed (e.g., finding data, determining necessary packages to install and load, running unsourced scripts, correcting aboslute paths)
 
         -   [ ] Objective attempt
         -   [ ] Objective met
         -   Grader comments:        
-        
+   
 
+## Reflection (Optional)
+
+Optionally (for engagement points) write a brief reflection about your work on this project. You can use this space to answer the following questions, but feel free to ignore these questions and write about whatever you think is most important.
+
+- What was the most challenging aspect of this project?
+- What was the most rewarding aspect of this project?
+- What would you do differently if you were to start over?
+- What did you learn from this project that you will carry forward to future projects?
+- What are you most proud of in this project?
+
+
+Alternatively/additionally in mind some of the suggested ways to earn engagement points, and expand on this (or other aspects of your project) in your reflection:
+
+- Creating many figures and tables, or particularly complex or creative ones
+- Impressively thoughtful and thorough narrative writing in your literature review or discussion section
+- Employing sophisticated statistical techniques in your analysis
+- Making excellent use of markdown features to create a polished final product
+- Having a maximally reproducible and dynamic manuscript
+- Fully committing to best practices for version control and GitHub integration/organization
+
+
+
+
+## Grading
+
+All final projects are graded by Dr. Dowling. You will see your grade on Canvas separated into two categories: objective points and engagement points.
+
+-   **Objective points:** #/30
+-   **Engagement points:** #/10
+-   **Total points:** #/40
+
+**Comments:**
